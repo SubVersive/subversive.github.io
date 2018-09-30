@@ -7,6 +7,8 @@ import Bio from '../components/Bio'
 import Layout from '../components/layout/Layout.jsx'
 import { rhythm } from '../utils/typography'
 
+import favicon from '../assets/favicon.ico';
+
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -22,6 +24,9 @@ class BlogIndex extends React.Component {
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
           title={siteTitle}
+          link={[
+            { rel: 'shortcut icon', type: 'image/ico', href: `${favicon}` }
+        ]}
         />
         <Bio />
         {posts.map(({ node }) => {
