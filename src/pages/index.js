@@ -1,19 +1,20 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import get from 'lodash/get';
+import Helmet from 'react-helmet';
 
-import Layout from '../components/layout/Layout.jsx'
-import { rhythm } from '../utils/typography'
+import Layout from '../components/layout/Layout.jsx';
+import { rhythm } from '../utils/typography';
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const siteDescription = get(
       this,
       'props.data.site.siteMetadata.description'
-    )
+    );
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
+      .filter(({ node }) => node.fields.slug !== '/about/');
 
     return (
       <Layout location={this.props.location}>
@@ -51,9 +52,9 @@ class BlogIndex extends React.Component {
       </Layout>
     )
   }
-}
+};
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -73,9 +74,10 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
+            tags
           }
         }
       }
     }
   }
-`
+`;

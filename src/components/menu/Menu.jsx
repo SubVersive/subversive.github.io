@@ -29,21 +29,23 @@ const right = {
 const link = {
   fontSize: '1rem',
   marginRight: '1rem',
+  color: '#ccc',
 };
 
 const aboutLink = {
   fontSize: '1rem',
   marginLeft: 'auto',
+  color: '#ccc',
 };
 
 const selected = {
   ...link,
-  fontWeight: 'bold',
+  fontStyle: 'italic',
 };
 
 const selectedAboutLink = {
   ...aboutLink,
-  fontWeight: 'bold',
+  fontStyle: 'italic',
 };
 
 const renderLink = (text, path, current) => (
@@ -56,7 +58,8 @@ const renderAboutLink = (text, path, current) => (
 const Menu = ({ path }) => (
   <div style={container}>
     <div style={left}>
-      {renderLink('nodejs', '/nodejs', path)}
+      {renderLink('home', '/', path)}
+      {renderLink('node-js', '/node-js', path)}
       {renderLink('react', '/react', path)}
     </div>
     <div style={right}>

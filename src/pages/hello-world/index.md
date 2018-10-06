@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: "2018-09-30T12:00:03.284Z"
+tags: nodejs, react
 ---
 
 This is my first post on my new fake blog!
