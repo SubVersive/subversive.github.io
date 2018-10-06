@@ -3,11 +3,8 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
-import Bio from '../components/Bio'
 import Layout from '../components/layout/Layout.jsx'
 import { rhythm } from '../utils/typography'
-
-import favicon from '../assets/favicon.jpg';
 
 class BlogIndex extends React.Component {
   render() {
@@ -33,7 +30,6 @@ class BlogIndex extends React.Component {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
         </Helmet>
-        <Bio />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (
