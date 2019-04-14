@@ -1,16 +1,29 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Link,graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import get from 'lodash/get';
 
 import Layout from '../components/layout/Layout.jsx';
 import { rhythm, scale } from '../utils/typography';
 
+const link = {
+  fontSize: '1rem',
+  marginRight: '1rem',
+  color: '#ccc',
+};
+
+const renderLink = (node) => (
+  <Link style={link} to={`/posts/${get(node, 'fields.slug')}`}>
+    {get(node, 'frontmatter.title')}
+  </Link>
+);
+
 class TagTemplate extends React.Component {
   render() {
+    const posts = get(this, 'props.data.allMarkdownRemark.edges');
     return (
       <Layout location={this.props.location}>
-        <h1>TAG</h1>
+        {posts.map(({ node }) => renderLink(node))}
       </Layout>
     )
   }

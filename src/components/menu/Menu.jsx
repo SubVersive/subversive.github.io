@@ -59,8 +59,8 @@ const Menu = ({ path }) => (
   <div style={container}>
     <div style={left}>
       {renderLink('home', '/', path)}
-      {renderLink('node-js', '/node-js', path)}
-      {renderLink('react', '/react', path)}
+      {renderLink('node-js', '/tags/nodejs', path)}
+      {renderLink('react', '/tags/react', path)}
     </div>
     <div style={right}>
       {renderAboutLink('about me', '/about', path)}

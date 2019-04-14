@@ -45,10 +45,20 @@ exports.createPages = ({ graphql, actions }) => {
             .map(v => v.trim())
         ]), []));
 
+
+        const aboutPage =  posts.find(post => post.node.fields.slug === '/about/');
+        createPage({
+          path: `/about/`,
+          component: blogPost,
+          context: {
+            slug: aboutPage.node.fields.slug,
+          },
+        });
+
         tags.forEach(tag => {
           console.log({ tag });
           createPage({
-            path: `/tag/${tag}`,
+            path: `/tags/${tag}`,
             component: tagComponent,
             context: {
               tag,
@@ -57,22 +67,25 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        _.each(posts, (post, index) => {
-          const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-          const next = index === 0 ? null : posts[index - 1].node;
+        posts
+          .filter(post => post.node.fields.slug !== '/about/')
+          .forEach((post, index) => {
+            const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+            const next = index === 0 ? null : posts[index - 1].node;
 
-          createPage({
-            path: `/blog${post.node.fields.slug}`,
-            component: blogPost,
-            context: {
-              slug: post.node.fields.slug,
-              previous,
-              next,
-            },
-          });
+            const prefix = post.node.fields.slug === '/about/' ? '/' : '/posts';
+            createPage({
+              path: `${prefix}${post.node.fields.slug}`,
+              component: blogPost,
+              context: {
+                slug: post.node.fields.slug,
+                previous,
+                next,
+              },
+            });
+          })
         })
-      })
-    )
+      )
   })
 };
 

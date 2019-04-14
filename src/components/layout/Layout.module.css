@@ -1,0 +1,10 @@
+.Layout {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 480px) {
+  .Layout {
+    margin: 16px;
+  }
+}
